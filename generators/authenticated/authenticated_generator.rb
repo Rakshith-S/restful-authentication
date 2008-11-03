@@ -56,7 +56,8 @@ class AuthenticatedGenerator < Rails::Generator::NamedBase
 
     # model controller
     base_name, @model_controller_class_path, @model_controller_file_path, @model_controller_class_nesting, @model_controller_class_nesting_depth = extract_modules(@model_controller_name)
-    @model_controller_class_name_without_nesting, @model_controller_singular_name, @model_controller_plural_name = inflect_names(base_name)
+    @model_controller_class_name_without_nesting, @model_controller_singular_name, @model_controller_plural_name = inflect_names(base_name.singularize)
+    @model_controller_class_name_without_nesting = @model_controller_class_name_without_nesting.pluralize
 
     if @model_controller_class_nesting.empty?
       @model_controller_class_name = @model_controller_class_name_without_nesting
